@@ -11,6 +11,7 @@
             padding: 0;
             text-align: center;
             background-color: #f4f4f4;
+            transition: background 0.5s, color 0.5s;
         }
         header {
             background-color: #333;
@@ -34,14 +35,33 @@
             padding: 10px;
             margin-top: 20px;
         }
+        .dark-mode {
+            background-color: #222;
+            color: white;
+        }
+        .dark-mode .container {
+            background: #333;
+            color: white;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <header>My Portfolio</header>
     <div class="container">
         <div class="section">
-            <h2>About Me</h2>
-            <p>Hello! I'm a Shafin uddin interested in ML and web development.</p>
+            <h2 id="welcome-message"></h2>
+            <p id="current-time"></p>
+            <p>Hello! I'm Shafin Uddin, interested in ML and web development.</p>
         </div>
         <div class="section">
             <h2>Projects</h2>
@@ -53,18 +73,41 @@
         </div>
         <div class="section">
             <h2>Contact</h2>
-            <p>Email:
-                <a href="mailto:shafinuddin284@gmail.com">shafinuddin284@gmail.com</a>
-            </p>
-            <p>LinkedIn
-                <a href="https://www.linkedin.com/in/shafin-uddin-02b609323/" target="_blank">Shafin Uddin</a></p>
-            <p>Phone: +8801602435163
-            </p>
-            <br>
-            <p>My insta:
-                <a href="https://www.instagram.com/shafinuddin284/" target="_blank">Shafin</a>
-                 </div>
+            <p>Email: <a href="mailto:shafinuddin284@gmail.com">shafinuddin284@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/shafin-uddin-02b609323/" target="_blank">Shafin Uddin</a></p>
+            <p>Phone: +8801602435163</p>
+            <p>Instagram: <a href="https://www.instagram.com/shafinuddin284/" target="_blank">Shafin</a></p>
+        </div>
+        <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
     </div>
     <footer>&copy; 2025 My Portfolio</footer>
+    <script>
+        // Display a dynamic welcome message
+        function setWelcomeMessage() {
+            const hour = new Date().getHours();
+            let message = "Welcome to my portfolio!";
+            if (hour < 12) message = "Good morning! Welcome to my portfolio!";
+            else if (hour < 18) message = "Good afternoon! Welcome to my portfolio!";
+            else message = "Good evening! Welcome to my portfolio!";
+            document.getElementById("welcome-message").innerText = message;
+        }
+        
+        // Update the current time
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById("current-time").innerText = "Current Time: " + timeString;
+        }
+        
+        // Toggle dark mode
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+        
+        // Run on page load
+        setWelcomeMessage();
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
 </body>
 </html>
